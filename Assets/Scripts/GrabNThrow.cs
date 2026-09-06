@@ -1,59 +1,171 @@
 using UnityEngine;
+using System.Collections;
+#if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
+#endif
 
-public class GrabNThrow : MonoBehaviour
+public class GrabSystem : MonoBehaviour
 {
-    public GameObject playerHands;
-    GameObject objectToHold;
-    public float throwForce = 10.0f;
-    
+    [Header("References")]
+    [SerializeField] private GameObject rayPoint;
+    [SerializeField] private Transform holdPoint;
 
-    private bool canGrab = true;
-    private bool hasItem = false;
+    [Header("Grab Settings")]
+    [SerializeField] private float grabDistance = 5f;
+    [SerializeField] private float holdSpeed = 15f;
+    [SerializeField] private LayerMask grabbableLayers;
+    [SerializeField] private float throwForce = 10f;
 
-    InputAction grabAction;
-    InputAction throwAction;
+    bool originalUseGravity;
+    float originalLinearDamping;
+    float originalAngularDamping;
+    RigidbodyInterpolation originalInterpolation;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private Rigidbody grabbedObject;
+
+    //I miss the new input system but we're using imported controls
+    //so we're stuck with the old system :(
+    private void Update()
     {
-        grabAction = InputSystem.actions.FindAction("Grab");
-        throwAction = InputSystem.actions.FindAction("Throw");
+        if (Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
+        {
+            Debug.Log("E pressed");
+            if (grabbedObject == null)
+                TryGrab();
+            else
+                Drop();
+        }
+
+        if (Keyboard.current != null && Keyboard.current.qKey.wasPressedThisFrame)
+        {
+            if (grabbedObject != null)
+                Throw();
+        }
+
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        if (canGrab == true)
+        if (grabbedObject != null)
         {
-            if (grabAction.IsPressed())
-            {
-                objectToHold.GetComponent<Rigidbody>().isKinematic = true;
-                objectToHold.transform.position = playerHands.transform.position;
-                objectToHold.transform.parent = playerHands.transform;
-            }
-            hasItem = true;
-        }
-        if (throwAction.IsPressed() && hasItem == true)
-        {
-            objectToHold.GetComponent<Rigidbody>().isKinematic = false;
-            objectToHold.GetComponent<Rigidbody>().AddForce(transform.forward * throwForce);
-            objectToHold.transform.parent = null;   
-        }
-        hasItem = false;
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "grabbable")
-        {
-            canGrab = true;
-            objectToHold = other.gameObject;
+            MoveGrabbedObject();
         }
     }
 
-    void OnTriggerExit()
+    private void TryGrab()
     {
-        canGrab = false;
+        Ray ray = new Ray(rayPoint.transform.position, rayPoint.transform.forward);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, grabDistance, grabbableLayers, QueryTriggerInteraction.Ignore))
+        {
+            Rigidbody rb = hit.collider.GetComponentInParent<Rigidbody>();
+
+            if (rb == null)
+                return;
+
+            grabbedObject = rb;
+
+            originalUseGravity = rb.useGravity;
+            originalLinearDamping = rb.linearDamping;
+            originalAngularDamping = rb.angularDamping;
+            originalInterpolation = rb.interpolation;
+
+
+            grabbedObject.useGravity = false;
+            grabbedObject.linearDamping = 10f;
+            grabbedObject.angularDamping = 10f;
+            grabbedObject.interpolation = RigidbodyInterpolation.Interpolate;
+
+        }
+    }
+
+    private void MoveGrabbedObject()
+    {
+        Vector3 offset = holdPoint.position - grabbedObject.position;
+
+        grabbedObject.linearVelocity = offset * holdSpeed;
+    }
+
+    private void Drop()
+    {
+        if (grabbedObject == null)
+            return;
+
+        grabbedObject.useGravity = originalUseGravity;
+        grabbedObject.linearDamping = originalLinearDamping;
+        grabbedObject.angularDamping = originalAngularDamping;
+        grabbedObject.interpolation = originalInterpolation;
+
+        grabbedObject = null;
+    }
+
+    private void Throw()
+    {
+        if (grabbedObject == null)
+            return;
+
+        Rigidbody rb = grabbedObject;
+
+        rb.useGravity = originalUseGravity;
+        rb.linearDamping = originalLinearDamping;
+        rb.angularDamping = originalAngularDamping;
+        rb.interpolation = originalInterpolation;
+
+        rb.linearVelocity = rayPoint.transform.forward * throwForce;
+
+        TrailRenderer trail = grabbedObject.GetComponentInParent<TrailRenderer>();
+        if (trail != null)
+        {
+            StartCoroutine(StopTrail(trail));
+        }
+
+
+        grabbedObject = null;
+
+    }
+    // upgrade logic for throw force 
+    //public void AddThrowForce()
+    //{
+       // throwForce += 5.0f;
+    //}
+    public void ApplyThrowForceUpgrade(int level)
+    {
+        throwForce = 5.0f + (level * 5.0f);
+    }
+
+    public void AddGrabDistance()
+    {
+        grabDistance++;
+    }
+
+    private IEnumerator StopTrail(TrailRenderer trail)
+    {
+        trail.emitting = true;
+
+        yield return new WaitForSeconds(2.5f);
+
+        if (trail == null) yield break;
+
+        trail.emitting = false;
+    }
+
+    void OnDrawGizmos()
+    {
+        Ray ray = new Ray(rayPoint.transform.position, rayPoint.transform.forward);
+
+        Vector3 origin = transform.position;
+        Vector3 direction = transform.forward;
+
+
+        RaycastHit hit;
+        if (Physics.Raycast(origin, direction, out hit, grabDistance))
+        {
+            Debug.DrawLine(origin, hit.point, Color.green);
+            Debug.Log($"Hit object: {hit.collider.name}");
+        }
+        else
+        {
+            Debug.DrawRay(origin, direction * grabDistance, Color.red);
+        }
     }
 }
