@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class BubbleFreeze : MonoBehaviour
 {
-    public ObjectPointFollow objectPointFollow;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -17,9 +16,9 @@ public class BubbleFreeze : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        if(other.CompareTag("Frozen"))
+        if(other.gameObject.TryGetComponent<ObjectPointFollow>(out ObjectPointFollow objectPointFollow) && other.CompareTag("Frozen"))
         {
-            objectPointFollow.isFrozen = false;
+            objectPointFollow.isTimerRunning = true;
             objectPointFollow.Move();
         }
     }

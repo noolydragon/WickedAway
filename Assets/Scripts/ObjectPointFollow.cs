@@ -6,14 +6,13 @@ public class ObjectPointFollow : MonoBehaviour
     public Transform[] patrolPoints;
     public int speed = 5;
     public int currentPoint;
-    public bool isFrozen;
-    private bool isTimerRunning = true;
+    public bool isFrozen = true;
+    public bool isTimerRunning = false;
     [SerializeField] private float timeRemaining = 10f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         currentPoint = 0;
-        isFrozen = true;
         transform.position = patrolPoints[currentPoint].position;
     }
 
@@ -36,17 +35,14 @@ public class ObjectPointFollow : MonoBehaviour
 
     public void Move()
     {
-        if(isFrozen == false)
+        if(transform.position == patrolPoints[currentPoint].position)
         {
-            if(transform.position == patrolPoints[currentPoint].position)
-            {
-                currentPoint++;
-            }
-            if(currentPoint >= patrolPoints.Length)
-            {
-                currentPoint = 0;
-            }
-            transform.position = Vector3.MoveTowards(transform.position , patrolPoints[currentPoint].position , speed*Time.deltaTime);
+            currentPoint++;
         }
+        if(currentPoint >= patrolPoints.Length)
+        {
+            currentPoint = 0;
+        }
+        transform.position = Vector3.MoveTowards(transform.position , patrolPoints[currentPoint].position , speed*Time.deltaTime);
     }
 }
