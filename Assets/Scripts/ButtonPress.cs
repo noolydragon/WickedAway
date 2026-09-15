@@ -10,8 +10,10 @@ public class ButtonPress : MonoBehaviour
     [Header("Events")]
     public UnityEvent onPressed;
     public UnityEvent onReleased;
+    public UnityEvent onHeld;
 
     private bool isPressed = false;
+    private bool isHeld = false;
     private ConfigurableJoint joint;
     private Vector3 startPosition;
 
@@ -36,6 +38,13 @@ public class ButtonPress : MonoBehaviour
         {
             Released();
         }
+    }
+
+    private void Held()
+    {
+        isHeld = true;
+        onHeld.Invoke();
+        Debug.Log("Button Held!");
     }
 
     private void Pressed()
