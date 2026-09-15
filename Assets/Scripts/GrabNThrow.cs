@@ -161,7 +161,6 @@ public class GrabSystem : MonoBehaviour
         if (Physics.Raycast(origin, direction, out hit, grabDistance))
         {
             Debug.DrawLine(origin, hit.point, Color.green);
-            Debug.Log($"Hit object: {hit.collider.name}");
         }
         else
         {

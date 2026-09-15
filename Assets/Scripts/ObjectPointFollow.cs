@@ -12,8 +12,8 @@ public class ObjectPointFollow : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        currentPoint = 0;
-        transform.position = patrolPoints[currentPoint].position;
+        //currentPoint = 0;
+        //transform.position = patrolPoints[currentPoint].position;
     }
 
     // Update is called once per frame
