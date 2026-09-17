@@ -9,6 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 348d379c5bf03491a954e265fbb6c1a3
+  - enabled: 1
+    path: Assets/Scenes/PuzzlesScene.unity
+    guid: 60720551dae4d05e599fc57ed775e33a
+  - enabled: 0
     path: Assets/Scenes/PlayerMovementTest.unity
     guid: 63ec44c822f2dad3fab6b93083fb59e8
   m_configObjects:
