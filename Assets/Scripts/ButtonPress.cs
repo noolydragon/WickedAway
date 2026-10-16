@@ -3,61 +3,32 @@ using UnityEngine.Events;
 
 public class ButtonPress : MonoBehaviour
 {
-    [Header("Threshold Settings")]
-    public float threshold = 0.8f; // Percentage (0 to 1) of max travel to trigger click
-    public float deadZone = 0.2f;   // Buffer zone to avoid jittering
+    [Header("Button Parts")]
+    [SerializeField] private Transform buttonTop;
+    
+    [Header("Button Events")]
+    public UnityEvent OnButtonPressed;
 
-    [Header("Events")]
-    public UnityEvent onPressed;
-    public UnityEvent onReleased;
-    public UnityEvent onHeld;
-
-    private bool isPressed = false;
-    private bool isHeld = false;
-    private ConfigurableJoint joint;
-    private Vector3 startPosition;
+    private Animator _animator;
+    private int _pressTriggerHash;
 
     void Start()
     {
-        joint = GetComponent<ConfigurableJoint>();
-        startPosition = transform.localPosition;
+        _animator = GetComponent<Animator>();
+        _pressTriggerHash = Animator.StringToHash("Press");
     }
 
-    void Update()
+    public void PressButton()
     {
-        // Calculate percentage traveled based on the joint's linear limit
-        float currentDistance = Vector3.Distance(startPosition, transform.localPosition);
-        float maxTravel = joint.linearLimit.limit;
-        float pressPercentage = Mathf.Clamp01(currentDistance / maxTravel);
+        _animator.SetTrigger(_pressTriggerHash);
+        OnButtonPressed.Invoke();
+    }
 
-        if (!isPressed && pressPercentage >= threshold)
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
         {
-            Pressed();
+            PressButton();
         }
-        else if (isPressed && pressPercentage <= deadZone)
-        {
-            Released();
-        }
-    }
-
-    private void Held()
-    {
-        isHeld = true;
-        onHeld.Invoke();
-        Debug.Log("Button Held!");
-    }
-
-    private void Pressed()
-    {
-        isPressed = true;
-        onPressed.Invoke();
-        Debug.Log("Button Pressed!");
-    }
-
-    private void Released()
-    {
-        isPressed = false;
-        onReleased.Invoke();
-        Debug.Log("Button Released!");
     }
 }
