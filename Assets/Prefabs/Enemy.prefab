@@ -137,8 +137,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
@@ -154,14 +154,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e562ec44def79d65cab2fe2184318e0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectPointFollow
+  rb: {fileID: 0}
   objectType: 1
   patrolPoints:
   - {fileID: 0}
   speed: 3
   currentPoint: 0
   isUnfrozen: 0
-  rb: {fileID: 0}
   target: {fileID: 0}
+  verticalForce: 1.5
+  forwardForce: 1
+  jumpCooldown: 3
+  isGrounded: 1
 --- !u!1 &2968789437664403708
 GameObject:
   m_ObjectHideFlags: 0
