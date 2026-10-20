@@ -10,6 +10,15 @@ TagManager:
   - Button
   - Unfrozen
   - Ground
+  - CheckPoint
+  - Red
+  - Orange
+  - Yellow
+  - Green
+  - Blue
+  - VIolet
+  - Pink
+  - White
   layers:
   - Default
   - TransparentFX
