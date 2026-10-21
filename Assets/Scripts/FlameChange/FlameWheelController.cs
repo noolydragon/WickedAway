@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class FlameWheelController : MonoBehaviour
 {
+    public GameObject flameWheel;
     public Animator anim;
     private bool flameWheelSelected = false;
     public Light playerPointLight;
@@ -11,7 +12,6 @@ public class FlameWheelController : MonoBehaviour
     public static int flameID;
     Color purple = new Color(0.50f, 0.00f, 0.80f, 0.00f);
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -22,12 +22,14 @@ public class FlameWheelController : MonoBehaviour
         if (flameWheelSelected)
         {
             anim.SetBool("OpenFlameWheel", true);
+            flameWheel.SetActive(true);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
         else
         {
             anim.SetBool("OpenFlameWheel", false);
+            flameWheel.SetActive(false);
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
