@@ -2,6 +2,7 @@ using StarterAssets;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 public class ThirdPersonCamController : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class ThirdPersonCamController : MonoBehaviour
 
     [SerializeField] private float minZoomDistance = 3f;
     [SerializeField] private float maxZoomDistance = 10f;
+    //[SerializeField] private List<Transform> targetsList = new List<Transform>();
 
     private PlayerControls controls;
     private CinemachineCamera cam;
@@ -19,6 +21,7 @@ public class ThirdPersonCamController : MonoBehaviour
     private Vector2 scrollDelta;
     private float targetZoom;
     private float currentZoom;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,6 +36,7 @@ public class ThirdPersonCamController : MonoBehaviour
         orbital = cam.GetComponent<CinemachineOrbitalFollow>();
 
         targetZoom = currentZoom = orbital.Radius;
+        //cam.TrackingTarget = targetsList[0];
     }
 
     void HandleMouseScroll(InputAction.CallbackContext context)

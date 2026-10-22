@@ -12,15 +12,7 @@ public class GameMenu : MonoBehaviour
 
     public void Credits()
     {
-        GameObject creditsPanel = GameObject.Find("CreditsPanel");
-        if (creditsPanel != null)
-        {
-            creditsPanel.SetActive(true);
-        }
-        else
-        {
-            Debug.LogWarning("CreditsPanel not found in the scene.");
-        }
+        SceneManager.LoadScene(gameSceneName);
     }
     public void Quit()
     {
