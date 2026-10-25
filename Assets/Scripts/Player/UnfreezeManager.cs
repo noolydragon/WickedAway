@@ -86,7 +86,6 @@ public class UnfreezeManager : MonoBehaviour
         if(patrolPoints == null || patrolPoints.Length == 0) return;
 
         transform.position = Vector3.MoveTowards(transform.position , patrolPoints[currentPoint].position , speed*Time.deltaTime);
-        transform.LookAt(patrolPoints[currentPoint].position);
 
         if(Vector3.Distance(transform.position, patrolPoints[currentPoint].position) < 0.1f)
         {
@@ -96,7 +95,8 @@ public class UnfreezeManager : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground") || collision.contacts[0].normal.y > 0.5f)
+        int groundLayer = LayerMask.NameToLayer("Ground");
+        if (collision.gameObject.layer == groundLayer || collision.contacts[0].normal.y > 0.5f)
         {
             isGrounded = true;
         }
@@ -105,7 +105,12 @@ public class UnfreezeManager : MonoBehaviour
     {
         isUnfrozen = true;
 
-        if (rb != null)
+        if (objectType == ObjectType.Patrol)
+        {
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
+        }
+
+        if (rb != null && objectType != ObjectType.Patrol)
         {
             rb.constraints = RigidbodyConstraints.None;
         }

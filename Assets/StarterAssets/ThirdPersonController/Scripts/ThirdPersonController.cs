@@ -16,17 +16,17 @@ namespace StarterAssets
     {
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
-        public float MoveSpeed = 2.0f;
+        public float MoveSpeed = 5.0f;
 
         [Tooltip("Sprint speed of the character in m/s")]
-        public float SprintSpeed = 5.335f;
+        public float SprintSpeed = 8f;
 
         [Tooltip("How fast the character turns to face movement direction")]
         [Range(0.0f, 0.3f)]
         public float RotationSmoothTime = 0.12f;
 
         [Tooltip("Acceleration and deceleration")]
-        public float SpeedChangeRate = 10.0f;
+        public float SpeedChangeRate = 20.0f;
 
         public AudioSource AudioFootsteps;
         public AudioSource LandingAudio;
@@ -37,14 +37,17 @@ namespace StarterAssets
 
         [Space(10)]
         [Tooltip("The height the player can jump")]
-        public float JumpHeight = 1.2f;
+        public float JumpHeight = 4.0f;
+        [Tooltip("Percentage of upward velocity kept when the jump button is released")]
+        [Range(0f, 1f)] public float jumpCutMult = 0.4f;
 
         [Tooltip("The character uses its own gravity value. The engine default is -9.81f")]
-        public float Gravity = -15.0f;
+        public float Gravity = -25f;
+        public float groundedGravity = -.05f;
 
         [Space(10)]
         [Tooltip("Time required to pass before being able to jump again. Set to 0f to instantly jump again")]
-        public float JumpTimeout = 0.50f;
+        public float JumpTimeout = 0.0f;
 
         [Tooltip("Time required to pass before entering the fall state. Useful for walking down stairs")]
         public float FallTimeout = 0.15f;
@@ -53,11 +56,19 @@ namespace StarterAssets
         [Tooltip("If the character is grounded or not. Not part of the CharacterController built in grounded check")]
         public bool Grounded = true;
 
+        [Header("Platform Feel Settings")]
+        [Tooltip("How long after falling off an edge the player can still jump in seconds")]
+        public float coyoteTime = 0.15f;
+        private float _coyoteTimeDelta;
+        [Tooltip("How early the player can press space to jump before landing and still register")]
+        public float jumpBufferTime = 0.15f;
+        private float _jumpBufferDelta;
+
         [Tooltip("Useful for rough ground")]
         public float GroundedOffset = -0.14f;
 
         [Tooltip("The radius of the grounded check. Should match the radius of the CharacterController")]
-        public float GroundedRadius = 0.28f;
+        public float GroundedRadius = 0.3f;
 
         [Tooltip("What layers the character uses as ground")]
         public LayerMask GroundLayers;
@@ -159,8 +170,8 @@ namespace StarterAssets
         {
             _hasAnimator = TryGetComponent(out _animator);
 
-            JumpAndGravity();
             GroundedCheck();
+            JumpAndGravity();
             Move();
         }
 
@@ -180,11 +191,24 @@ namespace StarterAssets
 
         private void GroundedCheck()
         {
+            if (!Grounded && _verticalVelocity > 0.0f)
+            {
+                return;
+            }
             // set sphere position, with offset
             Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset,
                 transform.position.z);
             Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers,
                 QueryTriggerInteraction.Ignore);
+
+            if (Grounded)
+            {
+                _coyoteTimeDelta = coyoteTime;
+            }
+            else
+            {
+                _coyoteTimeDelta -= Time.deltaTime;
+            }
 
             // update animator if using character
             if (_hasAnimator)
@@ -281,13 +305,25 @@ namespace StarterAssets
                 _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
             }
         }
-
+        private bool _isJumping;
         private void JumpAndGravity()
         {
+            if (_input.jump)
+            {
+                _jumpBufferDelta = jumpBufferTime;
+                //_input.jump = false;
+            }
+            else if (_jumpBufferDelta > 0.0f)
+            {
+                _jumpBufferDelta -= Time.deltaTime;
+            }
+
             if (Grounded)
             {
                 // reset the fall timeout timer
                 _fallTimeoutDelta = FallTimeout;
+
+                _isJumping = false;
 
                 // update animator if using character
                 if (_hasAnimator)
@@ -300,19 +336,6 @@ namespace StarterAssets
                 if (_verticalVelocity < 0.0f)
                 {
                     _verticalVelocity = -2f;
-                }
-
-                // Jump
-                if (_input.jump && _jumpTimeoutDelta <= 0.0f)
-                {
-                    // the square root of H * -2 * G = how much velocity needed to reach desired height
-                    _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
-
-                    // update animator if using character
-                    if (_hasAnimator)
-                    {
-                        _animator.SetBool(_animIDJump, true);
-                    }
                 }
 
                 // jump timeout
@@ -339,15 +362,40 @@ namespace StarterAssets
                         _animator.SetBool(_animIDFreeFall, true);
                     }
                 }
-
-                // if we are not grounded, do not jump
-                _input.jump = false;
             }
+
+            // Jump
+            if (_jumpBufferDelta > 0f && _jumpTimeoutDelta <= 0.0f && _coyoteTimeDelta > 0.0f)
+            {
+                // the square root of H * -2 * G = how much velocity needed to reach desired height
+                _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
+                Grounded = false;
+                _isJumping = true;
+
+                _coyoteTimeDelta = 0f;
+                _jumpBufferDelta = 0f;
+
+                //_input.jump = false;
+
+                // update animator if using character
+                if (_hasAnimator)
+                {
+                    _animator.SetBool(_animIDJump, true);
+                }
+            }
+
+            if (_isJumping && !_input.jump && _verticalVelocity > 0.0f)
+            {
+                _verticalVelocity *= jumpCutMult;
+                _isJumping = false;
+            }
+
+            float gravityMult = (_verticalVelocity < 0f) ? 2.5f : 2.0f;
 
             // apply gravity over time if under terminal (multiply by delta time twice to linearly speed up over time)
             if (_verticalVelocity < _terminalVelocity)
             {
-                _verticalVelocity += Gravity * Time.deltaTime;
+                _verticalVelocity += Gravity * gravityMult * Time.deltaTime;
             }
         }
 

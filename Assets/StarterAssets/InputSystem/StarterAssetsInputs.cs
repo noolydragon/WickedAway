@@ -20,6 +20,17 @@ namespace StarterAssets
 		public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
 
+		private void Update()
+{
+#if ENABLE_INPUT_SYSTEM
+    // Failsafe: If the spacebar is physically not pressed, ensure jump is false
+    if (Keyboard.current != null && !Keyboard.current.spaceKey.isPressed)
+    {
+        jump = false;
+    }
+#endif
+}
+
 #if ENABLE_INPUT_SYSTEM
 		public void OnMove(InputValue value)
 		{
