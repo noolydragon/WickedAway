@@ -1,0 +1,3 @@
+[submodule "Assets/SeaSlugSystems"]
+	path = Assets/SeaSlugSystems
+	url = https://github.com/noolydragon/SeaSlugUtilitiesUnity.git
