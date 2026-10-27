@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 
 
+
 public class UnfreezeManager : MonoBehaviour
 {
     public enum ObjectType {PhysicsOnly, Follower, Patrol}
@@ -85,9 +86,11 @@ public class UnfreezeManager : MonoBehaviour
     {
         if(patrolPoints == null || patrolPoints.Length == 0) return;
 
-        transform.position = Vector3.MoveTowards(transform.position , patrolPoints[currentPoint].position , speed*Time.deltaTime);
+        Vector3 targetPos = patrolPoints[currentPoint].position;
+        Vector3 newPos = Vector3.MoveTowards(rb.position, targetPos, speed * Time.fixedDeltaTime);
+        rb.MovePosition(newPos);
 
-        if(Vector3.Distance(transform.position, patrolPoints[currentPoint].position) < 0.1f)
+        if(Vector3.Distance(rb.position, targetPos) < 0.1f)
         {
             currentPoint = (currentPoint + 1) % patrolPoints.Length;
         }
