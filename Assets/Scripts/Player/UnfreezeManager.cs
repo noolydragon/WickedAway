@@ -2,8 +2,6 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 
-
-
 public class UnfreezeManager : MonoBehaviour
 {
     public enum ObjectType {PhysicsOnly, Follower, Patrol}
@@ -16,6 +14,9 @@ public class UnfreezeManager : MonoBehaviour
     public Transform[] patrolPoints;
     public int speed = 5;
     public int currentPoint;
+
+    [Header("Save Settings")]
+    public string objectID;
 
     [Header("Physics Object Settings")]
     public bool isUnfrozen = false;
@@ -128,5 +129,25 @@ public class UnfreezeManager : MonoBehaviour
             rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
         }
+    }
+
+    public ObjectSaveData CaptureState()
+    {
+        return new ObjectSaveData
+        {
+            objectID = this.objectID,
+            isUnfrozen = this.isUnfrozen,
+            currentPatrolPoint = this.currentPoint,
+            position = new SerializableVector3(transform.position)
+        };
+    }
+
+    public void LoadState(ObjectSaveData data)
+    {
+        this.isUnfrozen = data.isUnfrozen;
+        this.currentPoint = data.currentPatrolPoint;
+        transform.position = data.position.ToVector3();
+
+        if (isUnfrozen) Unfreeze(); else Freeze();
     }
 }
