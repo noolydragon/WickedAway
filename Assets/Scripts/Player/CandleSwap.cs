@@ -59,10 +59,15 @@ public class CandleSwap : MonoBehaviour
         if (activated)
         {
             flame.SetActive(true);
+            //get and set the UpdateColorTint script of the new candle active
+            candle.TryGetComponent<UpdateColorTint>(out UpdateColorTint updateColorTint);
+            updateColorTint.enabled = activated;
         }
         else
         {
             candleSwap.flame.SetActive(false);
+            candleSwap.TryGetComponent<UpdateColorTint>(out UpdateColorTint updateColorTint);
+            updateColorTint.enabled = activated;
         }
         candle.tag = (activated) ? "Player" : "CheckPoint";
     }
