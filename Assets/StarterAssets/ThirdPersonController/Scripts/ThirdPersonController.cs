@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
 #endif
@@ -368,6 +368,8 @@ namespace StarterAssets
                 }
             }
 
+            bool wasUp = (_verticalVelocity >= 0.0f);
+
             // Jump
             if (Grounded && _jumpBufferDelta > 0f && _jumpTimeoutDelta <= 0.0f && _coyoteTimeDelta > 0.0f)
             {
@@ -379,7 +381,7 @@ namespace StarterAssets
                 _coyoteTimeDelta = 0f;
                 _jumpBufferDelta = 0f;
 
-                //_input.jump = false;
+                
 
                 // update animator if using character
                 if (_hasAnimator)
@@ -388,8 +390,9 @@ namespace StarterAssets
                 }
             }
 
-            // canceling jump 
-            if (_isJumping && !inputJump && _verticalVelocity > 0.0f)
+            if (wasUp && _verticalVelocity < 0.0f) _input.jump = false;
+
+            if (_isJumping && !_input.jump && _verticalVelocity > 0.0f)
             {
                 _verticalVelocity *= jumpCutMult;
                 _isJumping = false;
