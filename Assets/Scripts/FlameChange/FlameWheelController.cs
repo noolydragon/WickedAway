@@ -9,7 +9,7 @@ public class FlameWheelController : MonoBehaviour
     public Light playerPointLight;
     public Image selectedItem;
     public Sprite noImage;
-    public static int flameID;
+    public static string color;
     Color purple = new Color(0.50f, 0.00f, 0.80f, 0.00f);
 
     void Update()
@@ -34,36 +34,36 @@ public class FlameWheelController : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
         }
 
-        switch (flameID)
+        switch (color)
         {
-            case 0: //no flame selected
+            case "": //no flame selected
                 selectedItem.sprite = noImage;
                 break;
-            case 1:
+            case "red":
                 playerPointLight.color = Color.red;
                 break;
-            case 2:
+            case "orange":
                 playerPointLight.color = Color.orange;
                 break;
-            case 3:
+            case "yellow":
                 playerPointLight.color = Color.yellow;
                 break;
-            case 4:
+            case "green":
                 playerPointLight.color = Color.green;
                 break;
-            case 5:
+            case "cyan":
                 playerPointLight.color = Color.cyan;
                 break;
-            case 6:
+            case "purple":
                 playerPointLight.color = Color.blue;
                 break;
-            case 7:
+            case "pink":
                 playerPointLight.color = Color.magenta;
                 break;
-            case 8:
+            case "white":
                 playerPointLight.color = Color.white;
                 break;
-            case 9:
+            case "black":
                 playerPointLight.color = Color.black;
                 break;
         }

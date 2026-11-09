@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
 #endif
@@ -123,7 +123,6 @@ namespace StarterAssets
         private const float _threshold = 0.01f;
 
         private bool _hasAnimator;
-        private bool _isJumping;
 
         private bool IsCurrentDeviceMouse
         {
@@ -306,14 +305,11 @@ namespace StarterAssets
                 _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
             }
         }
-        
+        private bool _isJumping;
         private void JumpAndGravity()
         {
-            bool inputJump = Keyboard.current != null && Keyboard.current.spaceKey.isPressed;
-
-            if (inputJump)
+            if (_input.jump)
             {
-                //Debug.Log();
                 _jumpBufferDelta = jumpBufferTime;
                 //_input.jump = false;
             }
@@ -371,11 +367,11 @@ namespace StarterAssets
             bool wasUp = (_verticalVelocity >= 0.0f);
 
             // Jump
-            if (Grounded && _jumpBufferDelta > 0f && _jumpTimeoutDelta <= 0.0f && _coyoteTimeDelta > 0.0f)
+            if (_jumpBufferDelta > 0f && _jumpTimeoutDelta <= 0.0f && _coyoteTimeDelta > 0.0f)
             {
                 // the square root of H * -2 * G = how much velocity needed to reach desired height
                 _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
-                //Grounded = false;
+                Grounded = false;
                 _isJumping = true;
 
                 _coyoteTimeDelta = 0f;
@@ -390,6 +386,7 @@ namespace StarterAssets
                 }
             }
 
+            // hack
             if (wasUp && _verticalVelocity < 0.0f) _input.jump = false;
 
             if (_isJumping && !_input.jump && _verticalVelocity > 0.0f)

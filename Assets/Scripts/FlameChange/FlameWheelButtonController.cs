@@ -4,13 +4,13 @@ using TMPro;
 
 public class FlameWheelButtonController : MonoBehaviour
 {
-    public int ID;
     private Animator anim;
     public string itemName;
     public TextMeshProUGUI itemText;
     public Image selectedItem;
     public bool selected = false;
     public Sprite icon;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -31,13 +31,13 @@ public class FlameWheelButtonController : MonoBehaviour
     public void Selected()
     {
         selected = true;
-        FlameWheelController.flameID = ID;
+        FlameWheelController.color = itemName;
     }
 
     public void Deselected()
     {
         selected = false;
-        FlameWheelController.flameID = 0;
+        FlameWheelController.color = "";
     }
 
     public void HoverEnter()

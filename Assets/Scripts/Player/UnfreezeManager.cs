@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UnfreezeManager : MonoBehaviour
 {
-    public enum ObjectType {PhysicsOnly, Follower, Patrol}
+    public enum ObjectType {PhysicsOnly, Follower, Patrol, PuzzleObject}
     public Rigidbody rb;
 
     [Header("Object Behavior Type")]
@@ -15,6 +15,12 @@ public class UnfreezeManager : MonoBehaviour
     public int speed = 5;
     public int currentPoint;
 
+    [Header("Pulley Settings")]
+    public float pullPercentage = 0.2f;
+    public float rotationSpeed = 20f;
+    public bool thisPulleyPulled = false;
+    public bool puzzleSolved;
+
     [Header("Save Settings")]
     public string objectID;
 
@@ -22,10 +28,10 @@ public class UnfreezeManager : MonoBehaviour
     public bool isUnfrozen = false;
     
     [Header("Following Objects Settings")]
-    [SerializeField] private Transform target; // Mostly the player
+    [SerializeField] private Transform target;
     [SerializeField] private float verticalForce = 1.5f;
     [SerializeField] private float forwardForce = 1f;
-    [SerializeField] private float jumpCooldown = 3f; //3 seconds to jump again
+    [SerializeField] private float jumpCooldown = 3f;
     [SerializeField] private bool isGrounded = true;
 
     void Start()
@@ -118,6 +124,12 @@ public class UnfreezeManager : MonoBehaviour
         {
             rb.constraints = RigidbodyConstraints.None;
         }
+    }
+
+    public void TurnPulley(GameObject gear, string color)
+    {
+        gear = FindFirstObjectByType<Gear>().gameObject;
+        gear.transform.Rotate(Vector3.up * rotationSpeed * pullPercentage); //Turn the gear based on the pull percentage
     }
     public void Freeze()
     {
