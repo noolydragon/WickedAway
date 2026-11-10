@@ -30,9 +30,9 @@ public class SaveManager : MonoBehaviour
         {
             CurrentSaveData.savedObjects.Clear();
 
-            UnfreezeManager[] sceneObjects = Object.FindObjectsByType<UnfreezeManager>(FindObjectsSortMode.None);
+            FreezeableObject[] sceneObjects = Object.FindObjectsByType<FreezeableObject>(FindObjectsSortMode.None);
 
-            foreach (UnfreezeManager obj in sceneObjects)
+            foreach (FreezeableObject obj in sceneObjects)
             {
                 if (string.IsNullOrEmpty(obj.objectID))
                 {
@@ -59,9 +59,9 @@ public class SaveManager : MonoBehaviour
             {
                 string json = File.ReadAllText(m_saveFilePath);
                 CurrentSaveData = JsonUtility.FromJson<GameSaveData>(json);
-                UnfreezeManager[] sceneObjects = Object.FindObjectsByType<UnfreezeManager>(FindObjectsSortMode.None);
+                FreezeableObject[] sceneObjects = Object.FindObjectsByType<FreezeableObject>(FindObjectsSortMode.None);
 
-                foreach (UnfreezeManager obj in sceneObjects)
+                foreach (FreezeableObject obj in sceneObjects)
                 {
                     ObjectSaveData matchedData = CurrentSaveData.savedObjects.Find(d => d.objectID == obj.objectID);
                     if (matchedData != null)

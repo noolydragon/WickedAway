@@ -51,7 +51,7 @@ public class FlameWheelController : MonoBehaviour
             case "green":
                 playerPointLight.color = Color.green;
                 break;
-            case "cyan":
+            case "blue":
                 playerPointLight.color = Color.cyan;
                 break;
             case "purple":
@@ -62,9 +62,6 @@ public class FlameWheelController : MonoBehaviour
                 break;
             case "white":
                 playerPointLight.color = Color.white;
-                break;
-            case "black":
-                playerPointLight.color = Color.black;
                 break;
         }
     }

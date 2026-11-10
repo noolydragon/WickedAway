@@ -4,17 +4,17 @@ public class EntityUnfreeze : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<UnfreezeManager>(out UnfreezeManager manager))
+        if (other.TryGetComponent<FreezeableObject>(out FreezeableObject freezeable))
         {
-            manager.Unfreeze();
+            freezeable.Unfreeze();
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent<UnfreezeManager>(out UnfreezeManager manager))
+        if (other.TryGetComponent<FreezeableObject>(out FreezeableObject freezeable))
         {
-            manager.Freeze();
+            StartCoroutine(freezeable.FreezeAfterDelay(3));
         }
     }
 }

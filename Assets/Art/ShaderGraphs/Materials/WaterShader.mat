@@ -29,7 +29,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 3000
   stringTagMap: {}
   disabledShaderPasses:
   - MOTIONVECTORS
@@ -111,27 +111,27 @@ Material:
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _Distance: 4.9
+    - _Distance: 7.5
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _FoamAmount: 11.97
-    - _FoamCuttoff: 2
+    - _FoamAmount: 3
+    - _FoamCuttoff: 1.16
     - _FoamScale: 103.67
     - _FoamSpeed: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _HightFrequency: 0
+    - _HightFrequency: 2.31
     - _Metallic: 0
-    - _NormalStrength: 0
+    - _NormalStrength: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.005
-    - _QueueControl: 0
+    - _QueueControl: 1
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _RefractionSpeed: 0.075
-    - _RefractionStrength: 0.64
+    - _RefractionStrength: 0.05
     - _RippleRadius: 2
     - _RippleSpeed: 5
     - _RippleStrength: 0.5
@@ -141,7 +141,7 @@ Material:
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
-    - _WaveAmplitude: 0.05
+    - _WaveAmplitude: 0.09
     - _WaveSpeed: 2.51
     - _WorkflowMode: 1
     - _XRMotionVectorsPass: 1
@@ -149,12 +149,12 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _DeepColor: {r: 0.041255556, g: 0.001112498, b: 0.23584905, a: 1}
+    - _DeepColor: {r: 0.041255534, g: 0.001112498, b: 0.23584902, a: 0.78431374}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FoamColor: {r: 1, g: 1, b: 1, a: 1}
     - _RefractionScale: {r: 3, g: 10, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _SurfaceColor: {r: 0.53301877, g: 1, b: 0.9623386, a: 1}
-    - _UV: {r: 1, g: 1, b: 0, a: 0}
+    - _SurfaceColor: {r: 0.53301877, g: 1, b: 0.9623386, a: 0.78431374}
+    - _UV: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

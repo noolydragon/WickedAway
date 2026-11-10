@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 545443435522854304}
   - component: {fileID: 5659726631025873119}
   - component: {fileID: 7019702981985594027}
-  - component: {fileID: 1947130066330347693}
+  - component: {fileID: 7617526545480223501}
+  - component: {fileID: 673149495571482624}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Frozen
@@ -142,7 +143,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 32
   m_CollisionDetection: 0
---- !u!114 &1947130066330347693
+--- !u!114 &7617526545480223501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2854649430606037416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 732611f39688d1d4d97d051635fe4f6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyBehavior
+  enemyTarget: {fileID: 0}
+  jumpCooldown: 3
+--- !u!114 &673149495571482624
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -153,19 +168,11 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e562ec44def79d65cab2fe2184318e0d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ObjectPointFollow
+  m_EditorClassIdentifier: Assembly-CSharp::FreezeableObject
   rb: {fileID: 7019702981985594027}
-  objectType: 1
-  patrolPoints:
-  - {fileID: 0}
-  speed: 3
-  currentPoint: 0
+  objectID: 000001
+  objectColor: 4
   isUnfrozen: 0
-  target: {fileID: 0}
-  verticalForce: 5
-  forwardForce: 5
-  jumpCooldown: 3
-  isGrounded: 1
 --- !u!1 &2968789437664403708
 GameObject:
   m_ObjectHideFlags: 0

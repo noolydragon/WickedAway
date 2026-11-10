@@ -323,6 +323,132 @@ Transform:
   - {fileID: 1388846991}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &18082023
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 18082027}
+  - component: {fileID: 18082026}
+  - component: {fileID: 18082025}
+  - component: {fileID: 18082024}
+  - component: {fileID: 18082028}
+  m_Layer: 0
+  m_Name: Plane
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!64 &18082024
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18082023}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &18082025
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18082023}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 0aa6ab5a1f9945542a0729cb1b5dd867, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &18082026
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18082023}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &18082027
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18082023}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.13, z: -14.56}
+  m_LocalScale: {x: 2, y: 1, z: 6}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &18082028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18082023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dcb1a3a5608a474ba6415aee5ec2a03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExpandWaterBounds
 --- !u!1 &23952186
 GameObject:
   m_ObjectHideFlags: 0
@@ -724,9 +850,9 @@ Transform:
   m_GameObject: {fileID: 93399281}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5000001, y: 0, z: 21}
-  m_LocalScale: {x: 1.5, y: 0.0375, z: 1.5}
-  m_ConstrainProportionsScale: 1
+  m_LocalPosition: {x: 0.248, y: -0.293, z: 20.576}
+  m_LocalScale: {x: 1.5, y: 0.16, z: 1.5}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1393015734}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1249,9 +1375,9 @@ Transform:
   m_GameObject: {fileID: 137840289}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.5, y: 0, z: 18}
-  m_LocalScale: {x: 2, y: 0.05, z: 2}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -3.279, y: -0.3, z: 18}
+  m_LocalScale: {x: 3, y: 0.2, z: 3}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1393015734}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1647,6 +1773,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 208520163}
   m_CullTransparentMesh: 1
+--- !u!1 &211178522
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 211178523}
+  m_Layer: 0
+  m_Name: BluePulleyParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &211178523
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 211178522}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1694140229}
+  - {fileID: 969947680}
+  m_Father: {fileID: 573042893}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &229586221
 GameObject:
   m_ObjectHideFlags: 0
@@ -3320,7 +3479,7 @@ GameObject:
   - component: {fileID: 321989647}
   - component: {fileID: 321989646}
   m_Layer: 0
-  m_Name: Pulley
+  m_Name: RedPulley
   m_TagString: Red
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3339,7 +3498,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 573042893}
+  m_Father: {fileID: 1060924302}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!136 &321989646
 CapsuleCollider:
@@ -4325,6 +4484,39 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 418629117}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &437552623
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 437552624}
+  m_Layer: 0
+  m_Name: PurplePulleyParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &437552624
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437552623}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1296445922}
+  - {fileID: 1027284543}
+  m_Father: {fileID: 573042893}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &438173938
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6550,119 +6742,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1981564414}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &552536776
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 552536777}
-  - component: {fileID: 552536781}
-  - component: {fileID: 552536780}
-  - component: {fileID: 552536779}
-  m_Layer: 0
-  m_Name: Plane
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &552536777
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 552536776}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 17}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 1393015734}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &552536779
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 552536776}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &552536780
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 552536776}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 0aa6ab5a1f9945542a0729cb1b5dd867, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_MaskInteraction: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &552536781
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 552536776}
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &569611518
 GameObject:
   m_ObjectHideFlags: 0
@@ -6811,16 +6890,6 @@ Transform:
   - {fileID: 604807402}
   - {fileID: 418629118}
   - {fileID: 899531660}
-  - {fileID: 575777451}
-  - {fileID: 1551833590}
-  - {fileID: 1694140229}
-  - {fileID: 969947680}
-  - {fileID: 1161131888}
-  - {fileID: 1602146983}
-  - {fileID: 321989645}
-  - {fileID: 1734780398}
-  - {fileID: 1296445922}
-  - {fileID: 1027284543}
   - {fileID: 1992243401}
   - {fileID: 1425944035}
   - {fileID: 1323665406}
@@ -6834,6 +6903,11 @@ Transform:
   - {fileID: 671169661}
   - {fileID: 805426178}
   - {fileID: 1983337555}
+  - {fileID: 1539825148}
+  - {fileID: 1698826050}
+  - {fileID: 211178523}
+  - {fileID: 1060924302}
+  - {fileID: 437552624}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &575777450
@@ -6849,7 +6923,7 @@ GameObject:
   - component: {fileID: 575777453}
   - component: {fileID: 575777452}
   m_Layer: 0
-  m_Name: Pulley
+  m_Name: GreenPulley
   m_TagString: Green
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6864,11 +6938,11 @@ Transform:
   m_GameObject: {fileID: 575777450}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 9.32, y: 2.5, z: -24.54533}
+  m_LocalPosition: {x: 0.069999695, y: -0.25, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 573042893}
+  m_Father: {fileID: 1539825148}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!136 &575777452
 CapsuleCollider:
@@ -9739,8 +9813,8 @@ Transform:
   m_GameObject: {fileID: 847228299}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3, y: -9.313226e-10, z: 13.5}
-  m_LocalScale: {x: 2, y: 0.05, z: 2}
+  m_LocalPosition: {x: 3, y: -0.249, z: 13.5}
+  m_LocalScale: {x: 2, y: 0.2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1393015734}
@@ -10136,6 +10210,7 @@ GameObject:
   - component: {fileID: 899531663}
   - component: {fileID: 899531662}
   - component: {fileID: 899531661}
+  - component: {fileID: 899531664}
   m_Layer: 0
   m_Name: Walls (12)
   m_TagString: Untagged
@@ -10236,6 +10311,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 899531659}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &899531664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899531659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c53148e07893eb241a23552c198bea68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PulleySystem
+  pulleys: []
+  numOfPulleys: 0
+  rotationSpeed: 50
+  isPulled: 0
+  drawbridge: {fileID: 0}
+  targetAngle: 180
+  dropDuration: 2
+  rotationToSolve: 360
 --- !u!1001 &904078241
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10874,7 +10969,7 @@ GameObject:
   - component: {fileID: 969947682}
   - component: {fileID: 969947681}
   m_Layer: 0
-  m_Name: Pulley
+  m_Name: BluePulley
   m_TagString: Blue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10893,7 +10988,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 573042893}
+  m_Father: {fileID: 211178523}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!136 &969947681
 CapsuleCollider:
@@ -11782,7 +11877,7 @@ GameObject:
   - component: {fileID: 1027284545}
   - component: {fileID: 1027284544}
   m_Layer: 0
-  m_Name: Pulley
+  m_Name: PurplePulley
   m_TagString: Purple
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11801,7 +11896,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 573042893}
+  m_Father: {fileID: 437552624}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!136 &1027284544
 CapsuleCollider:
@@ -12047,6 +12142,39 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -88403409373116034, guid: 776935060c9fecf4f9a7ec999f635c03, type: 3}
+--- !u!1 &1060924301
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1060924302}
+  m_Layer: 0
+  m_Name: RedPulleyParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1060924302
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1060924301}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 321989645}
+  - {fileID: 1734780398}
+  m_Father: {fileID: 573042893}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1091447468
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12365,28 +12493,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnfreezeManager
   rb: {fileID: 1130153921}
-  objectType: 2
-  patrolPoints:
-  - {fileID: 438416493}
-  - {fileID: 1133634755}
-  - {fileID: 804856503}
-  - {fileID: 1206826273}
-  - {fileID: 1327683950}
-  - {fileID: 960149469}
-  - {fileID: 289355788}
-  speed: 5
-  currentPoint: 0
-  pullPercentage: 0.2
-  rotationSpeed: 20
-  thisPulleyPulled: 0
-  puzzleSolved: 0
   objectID: 
+  objectColor: 0
   isUnfrozen: 0
-  target: {fileID: 0}
-  verticalForce: 1.5
-  forwardForce: 1
-  jumpCooldown: 3
-  isGrounded: 1
 --- !u!1 &1133634754
 GameObject:
   m_ObjectHideFlags: 0
@@ -12712,7 +12821,7 @@ GameObject:
   - component: {fileID: 1161131890}
   - component: {fileID: 1161131889}
   m_Layer: 0
-  m_Name: Pulley
+  m_Name: PinkPulley
   m_TagString: Pink
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12731,7 +12840,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 573042893}
+  m_Father: {fileID: 1698826050}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!136 &1161131889
 CapsuleCollider:
@@ -14497,7 +14606,7 @@ GameObject:
   - component: {fileID: 1296445924}
   - component: {fileID: 1296445923}
   m_Layer: 0
-  m_Name: Pulley
+  m_Name: PurplePulley
   m_TagString: Purple
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14516,7 +14625,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 573042893}
+  m_Father: {fileID: 437552624}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!136 &1296445923
 CapsuleCollider:
@@ -15593,13 +15702,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 7019702981985594027, guid: 24bfd8cf6717cf289b8bc1cbbb143a89, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8232307683877518637, guid: 24bfd8cf6717cf289b8bc1cbbb143a89, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.791
+      value: -2.624
       objectReference: {fileID: 0}
     - target: {fileID: 8232307683877518637, guid: 24bfd8cf6717cf289b8bc1cbbb143a89, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.503
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8232307683877518637, guid: 24bfd8cf6717cf289b8bc1cbbb143a89, type: 3}
       propertyPath: m_LocalPosition.z
@@ -16041,7 +16154,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1947130066330347693, guid: 24bfd8cf6717cf289b8bc1cbbb143a89, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -16097,7 +16211,6 @@ Transform:
   - {fileID: 137840290}
   - {fileID: 93399282}
   - {fileID: 611248396}
-  - {fileID: 552536777}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1398924420
@@ -17642,6 +17755,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ActivateMenu
   gameSceneName: DemoWinScene
+--- !u!1 &1539825147
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1539825148}
+  m_Layer: 0
+  m_Name: GreenPulleyParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1539825148
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1539825147}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.25, y: 2.75, z: -24.54533}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 575777451}
+  - {fileID: 1551833590}
+  m_Father: {fileID: 573042893}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1550919504
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17720,7 +17866,7 @@ GameObject:
   - component: {fileID: 1551833592}
   - component: {fileID: 1551833591}
   m_Layer: 0
-  m_Name: Pulley
+  m_Name: GreenPulley
   m_TagString: Green
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17735,11 +17881,11 @@ Transform:
   m_GameObject: {fileID: 1551833589}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 9.32, y: 3.27, z: -24.54533}
+  m_LocalPosition: {x: 0.069999695, y: 0.52, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 573042893}
+  m_Father: {fileID: 1539825148}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!136 &1551833591
 CapsuleCollider:
@@ -17909,7 +18055,7 @@ GameObject:
   - component: {fileID: 1602146985}
   - component: {fileID: 1602146984}
   m_Layer: 0
-  m_Name: Pulley
+  m_Name: PinkPulley
   m_TagString: Pink
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17928,7 +18074,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 573042893}
+  m_Father: {fileID: 1698826050}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!136 &1602146984
 CapsuleCollider:
@@ -18445,7 +18591,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0f551c4dac73c45a8d64267cbe6b7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  itemName: cyan
+  itemName: blue
   itemText: {fileID: 2033983370}
   selectedItem: {fileID: 1988631529}
   selected: 0
@@ -19342,7 +19488,7 @@ GameObject:
   - component: {fileID: 1694140231}
   - component: {fileID: 1694140230}
   m_Layer: 0
-  m_Name: Pulley
+  m_Name: BluePulley
   m_TagString: Blue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19361,7 +19507,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 573042893}
+  m_Father: {fileID: 211178523}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!136 &1694140230
 CapsuleCollider:
@@ -19443,6 +19589,39 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1694140228}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1698826049
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1698826050}
+  m_Layer: 0
+  m_Name: PinkPulleyParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1698826050
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698826049}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1161131888}
+  - {fileID: 1602146983}
+  m_Father: {fileID: 573042893}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1701807290
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20209,7 +20388,7 @@ GameObject:
   - component: {fileID: 1734780400}
   - component: {fileID: 1734780399}
   m_Layer: 0
-  m_Name: Pulley
+  m_Name: RedPulley
   m_TagString: Red
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20228,7 +20407,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 573042893}
+  m_Father: {fileID: 1060924302}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!136 &1734780399
 CapsuleCollider:
@@ -25945,3 +26124,4 @@ SceneRoots:
   - {fileID: 694492966}
   - {fileID: 1365430496}
   - {fileID: 1451269649}
+  - {fileID: 18082027}
