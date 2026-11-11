@@ -2,7 +2,6 @@ using UnityEngine;
 using StarterAssets;
 using UnityEngine.InputSystem;
 using Unity.Cinemachine;
-using System.Transactions;
 
 public class CandleSwap : MonoBehaviour
 {
@@ -12,6 +11,9 @@ public class CandleSwap : MonoBehaviour
     private GameObject m_startCandle;
     private bool m_isControllingStartCandle = true;
     public bool m_canSwitch = false;
+    public FlameWheelController flameWheelController;
+    [Header("Audio Assignment")]
+    public AudioClip swapSound;
 
     void Start()
     {
@@ -25,8 +27,10 @@ public class CandleSwap : MonoBehaviour
         {
             m_canSwitch = false;
             Debug.Log("Swap Requested");
+            AudioManager.instance.PlaySound(swapSound);
             SwapCandle(m_startCandle, false);
             SwapCandle(gameObject, true);
+            flameWheelController.playerPointLight = flame.GetComponentInChildren<Light>();
             cineCam = GameObject.FindFirstObjectByType<CinemachineCamera>();
             Transform playerTransform = GameObject.FindGameObjectWithTag("CinemachineTarget").transform;
         
@@ -59,21 +63,32 @@ public class CandleSwap : MonoBehaviour
         //get and set the candle swap script inactive on the candle swapping to
         candle.TryGetComponent<CandleSwap>(out CandleSwap candleSwap);
         candleSwap.enabled = !activated;
-        m_startCandle = candle; //this switches the candle swapped to into the start candle to reset the logic
         //set the flame to active if active candle else set inactive
+
+        GameObject targetFlame = candleSwap != null ? candleSwap.flame : flame; 
+
         if (activated)
         {
-            flame.SetActive(true);
-            //get and set the UpdateColorTint script of the new candle active
-            flame.TryGetComponent<UpdateColorTint>(out UpdateColorTint updateColorTint);
-            updateColorTint.enabled = true;
+            if (targetFlame != null)
+            {
+                flame.SetActive(true);
+                if (targetFlame.TryGetComponent<UpdateColorTint>(out UpdateColorTint updateColorTint))
+                {
+                    updateColorTint.enabled = true;
+                }
+            }
+            m_startCandle = candle; //update start candle to the new candle
         }
         else
         {
-            candleSwap.flame.SetActive(false);
-            //get and set the UpdateColorTint script of the old candle inactive
-            flame.TryGetComponent<UpdateColorTint>(out UpdateColorTint oldUpdateColorTint);
-            oldUpdateColorTint.enabled = false;
+            if (targetFlame != null)
+            {
+                targetFlame.SetActive(false);
+                if (targetFlame.TryGetComponent<UpdateColorTint>(out UpdateColorTint oldupdateColorTint))
+                {
+                    oldupdateColorTint.enabled = false;
+                }
+            }
         }
         candle.tag = activated ? "Player" : "CheckPoint";
     }

@@ -37,6 +37,7 @@ public class FreezeableObject : MonoBehaviour
     public void Unfreeze()
     {
         string playerColor = FlameWheelController.color;
+        Debug.Log($"Attempting unfreeze. Player Color: [{playerColor}] | Object Color: [{objectColor.ToString().ToLower()}]");
         if (playerColor != objectColor.ToString().ToLower())
         {
             return;
