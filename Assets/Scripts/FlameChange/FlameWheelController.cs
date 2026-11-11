@@ -10,7 +10,6 @@ public class FlameWheelController : MonoBehaviour
     public Image selectedItem;
     public Sprite noImage;
     public static string color;
-    Color purple = new Color(0.50f, 0.00f, 0.80f, 0.00f);
 
     void Update()
     {
