@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EntityUnfreeze : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.TryGetComponent<FreezeableObject>(out FreezeableObject freezeable))
         {

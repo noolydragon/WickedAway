@@ -16,8 +16,9 @@ public class PulleySystemManager : MonoBehaviour
 
     [Header("Drawbridge Settings")]
     [SerializeField] private Transform drawbridge;
-    [SerializeField] private Vector3 targetRotation = new Vector3(180f, 0f, 0f);
+    [SerializeField] private Vector3 targetRotation = new Vector3(90f, 0f, 0f);
     [SerializeField] private float dropDuration = 2f;
+    [SerializeField] private Light puzzleLight;
 
     private bool puzzleSolved = false;
 
@@ -51,7 +52,7 @@ public class PulleySystemManager : MonoBehaviour
     {
         float step = rotationSpeed * Time.deltaTime;
 
-        pulley.transform.Rotate(Vector3.up, step);
+        pulley.transform.Rotate(Vector3.forward, step);
         pulleyRotations[pulley] += Mathf.Abs(step);
 
         if (pulleyRotations[pulley] >= rotationToSolve)
@@ -76,11 +77,12 @@ public class PulleySystemManager : MonoBehaviour
     private void DropDrawbridge()
     {
         puzzleSolved = true;
-
+        puzzleLight.enabled = true;
+    
         if (drawbridge != null)
         {
             Debug.Log("Drawbridge dropping attempt");
-            drawbridge.DORotate(targetRotation, dropDuration).SetEase(Ease.OutBounce);
+            drawbridge.SetPositionAndRotation(drawbridge.position, Quaternion.Euler(targetRotation));
         }
     }
 }

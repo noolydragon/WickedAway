@@ -32,10 +32,19 @@ public class ButtonPress : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("Frozen"))
+        if (other.CompareTag("Player"))
         {
             PressButton();
             Debug.Log("Button Pressed");
+        }
+        if (other.CompareTag("Frozen"))
+        {
+            PressButton();
+            FreezeableObject freezeable = other.GetComponent<FreezeableObject>();
+            if (freezeable != null)
+            {
+                freezeable.Freeze();
+            }
         }
     }
 

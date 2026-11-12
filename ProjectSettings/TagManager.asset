@@ -5,7 +5,6 @@ TagManager:
   serializedVersion: 3
   tags:
   - CinemachineTarget
-  - grabbable
   - Frozen
   - Button
   - Unfrozen
@@ -19,6 +18,7 @@ TagManager:
   - Pink
   - White
   - Purple
+  - Burnable
   layers:
   - Default
   - TransparentFX

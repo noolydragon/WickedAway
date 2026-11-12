@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 710629694533735205}
   - component: {fileID: 1585753113620962953}
   - component: {fileID: 8301465662337312368}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ButtonBase
   m_TagString: Button
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 7474600764374057494}
   - component: {fileID: 4853272171897273826}
   - component: {fileID: 4162346163940326837}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Button
   m_TagString: Button
   m_Icon: {fileID: 0}
@@ -159,7 +159,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dcc05342ab7e046b9265afaa342ff00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonPress
-  buttonTop: {fileID: 8936184311032080492}
+  _buttonTop: {fileID: 0}
+  _animator: {fileID: 0}
   OnButtonPressed:
     m_PersistentCalls:
       m_Calls:
@@ -222,7 +223,7 @@ GameObject:
   - component: {fileID: 5607322028250509030}
   - component: {fileID: 8528661580303038260}
   - component: {fileID: 8882172875837976507}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -405,7 +406,7 @@ GameObject:
   - component: {fileID: 4021853002066185313}
   - component: {fileID: 868725192792060716}
   - component: {fileID: 1808924200556068076}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ButtonTop
   m_TagString: Button
   m_Icon: {fileID: 0}
