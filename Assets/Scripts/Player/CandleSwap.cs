@@ -2,6 +2,7 @@ using UnityEngine;
 using StarterAssets;
 using UnityEngine.InputSystem;
 using Unity.Cinemachine;
+using UnityEngine.SceneManagement;
 
 public class CandleSwap : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class CandleSwap : MonoBehaviour
     private bool m_isControllingStartCandle = true;
     public bool m_canSwitch = false;
     public FlameWheelController flameWheelController;
+    public Transform spawnPoint;
     [Header("Audio Assignment")]
     public AudioClip swapSound;
 
@@ -39,7 +41,17 @@ public class CandleSwap : MonoBehaviour
                 cineCam.Follow = playerTransform;
                 cineCam.LookAt = playerTransform; 
             }
+            if (spawnPoint != null)
+            {
+                spawnPoint.position = playerTransform.position;
+            }
             m_isControllingStartCandle = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            Debug.Log("Return to beginning of game");
+            SceneManager.LoadScene("PuzzlesScene");
         }
     }
 

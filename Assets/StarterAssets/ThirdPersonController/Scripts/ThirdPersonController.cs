@@ -55,15 +55,6 @@ namespace StarterAssets
         [Header("Player Grounded")]
         [Tooltip("If the character is grounded or not. Not part of the CharacterController built in grounded check")]
         public bool Grounded = true;
-
-        [Header("Platform Feel Settings")]
-        [Tooltip("How long after falling off an edge the player can still jump in seconds")]
-        public float coyoteTime = 0.15f;
-        private float _coyoteTimeDelta;
-        [Tooltip("How early the player can press space to jump before landing and still register")]
-        public float jumpBufferTime = 0.15f;
-        private float _jumpBufferDelta;
-
         [Tooltip("Useful for rough ground")]
         public float GroundedOffset = -0.14f;
 
@@ -201,15 +192,6 @@ namespace StarterAssets
             Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers,
                 QueryTriggerInteraction.Ignore);
 
-            if (Grounded)
-            {
-                _coyoteTimeDelta = coyoteTime;
-            }
-            else
-            {
-                _coyoteTimeDelta -= Time.deltaTime;
-            }
-
             // update animator if using character
             if (_hasAnimator)
             {
@@ -308,15 +290,6 @@ namespace StarterAssets
         private bool _isJumping;
         private void JumpAndGravity()
         {
-            if (_input.jump)
-            {
-                _jumpBufferDelta = jumpBufferTime;
-                //_input.jump = false;
-            }
-            else if (_jumpBufferDelta > 0.0f)
-            {
-                _jumpBufferDelta -= Time.deltaTime;
-            }
 
             if (Grounded)
             {
@@ -367,15 +340,12 @@ namespace StarterAssets
             bool wasUp = (_verticalVelocity >= 0.0f);
 
             // Jump
-            if (_jumpBufferDelta > 0f && _jumpTimeoutDelta <= 0.0f && _coyoteTimeDelta > 0.0f)
+            if (_input.jump && _jumpTimeoutDelta <= 0.0f && Grounded)
             {
                 // the square root of H * -2 * G = how much velocity needed to reach desired height
                 _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
                 Grounded = false;
                 _isJumping = true;
-
-                _coyoteTimeDelta = 0f;
-                _jumpBufferDelta = 0f;
 
                 
 
