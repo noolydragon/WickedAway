@@ -26,6 +26,15 @@ public class FreezeableObject : MonoBehaviour
 
     private Coroutine freezeCoroutine;
 
+    void Awake()
+    {
+        if(!isUnfrozen)
+        {
+            Freeze();
+        }
+        FlameWheelController.color = "orange";
+    }
+
     void Start()
     {
         if(rb == null)

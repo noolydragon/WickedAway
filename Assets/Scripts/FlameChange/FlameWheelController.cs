@@ -62,6 +62,9 @@ public class FlameWheelController : MonoBehaviour
             case "white":
                 playerPointLight.color = Color.white;
                 break;
+            default:
+                playerPointLight.color = Color.orange;
+                break;
         }
     }
 }
