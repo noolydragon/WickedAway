@@ -9,9 +9,9 @@ public class ActivateMenu : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
+            SceneManager.LoadScene(gameSceneName);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-            SceneManager.LoadScene(gameSceneName);
         }
     }
 }

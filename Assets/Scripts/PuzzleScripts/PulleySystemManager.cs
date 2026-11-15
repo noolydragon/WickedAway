@@ -20,6 +20,9 @@ public class PulleySystemManager : MonoBehaviour
     [SerializeField] private float dropDuration = 2f;
     [SerializeField] private Light puzzleLight;
 
+    [Header("Animation Settings")]
+    [SerializeField] private Animator _drawbridgeAnimator;
+
     private bool puzzleSolved = false;
 
     void Start()
@@ -81,8 +84,7 @@ public class PulleySystemManager : MonoBehaviour
     
         if (drawbridge != null)
         {
-            Debug.Log("Drawbridge dropping attempt");
-            drawbridge.SetPositionAndRotation(drawbridge.position, Quaternion.Euler(targetRotation));
+            _drawbridgeAnimator.SetTrigger("Lower");
         }
     }
 }

@@ -80,6 +80,9 @@ namespace StarterAssets
         [Tooltip("For locking the camera position on all axis")]
         public bool LockCameraPosition = false;
 
+        [Header("Particle System")]
+        public ParticleSystem dustParticleSystem;
+
         // cinemachine
         private float _cinemachineTargetYaw;
         private float _cinemachineTargetPitch;
@@ -399,11 +402,25 @@ namespace StarterAssets
         {
             if (animationEvent.animatorClipInfo.weight > 0.5f)
             {
-
+                if (dustParticleSystem != null)
+                {
+                    dustParticleSystem.Play();
+                }
                 if (AudioFootsteps != null)
                     AudioFootsteps.Play();
                 if (AudioFoley != null)
                     AudioFoley.Play();
+            }
+            else
+            {
+                if (dustParticleSystem != null)
+                {
+                    dustParticleSystem.Stop();
+                }
+                if (AudioFootsteps != null)
+                    AudioFootsteps.Stop();
+                if (AudioFoley != null)
+                    AudioFoley.Stop();
             }
         }
 
