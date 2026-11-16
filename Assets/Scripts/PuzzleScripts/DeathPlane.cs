@@ -7,6 +7,11 @@ public class DeathPlane : MonoBehaviour
     public Transform playerPoint;
     public GameObject player;
 
+    void Start()
+    {
+        playerPoint = GameObject.FindGameObjectWithTag("CinemachineTarget").transform;
+    }
+
     void Update()
     {
         if (playerPoint.position.y <= -4)
