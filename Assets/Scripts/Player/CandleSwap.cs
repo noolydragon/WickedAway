@@ -3,11 +3,13 @@ using StarterAssets;
 using UnityEngine.InputSystem;
 using Unity.Cinemachine;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class CandleSwap : MonoBehaviour
 {
     [Header("Candle Assignment")]
     public GameObject flame;
+    public GameObject flamePrefab;
     public CinemachineCamera cineCam;
     private GameObject m_startCandle;
     private bool m_isControllingStartCandle = true;
@@ -30,22 +32,31 @@ public class CandleSwap : MonoBehaviour
             m_canSwitch = false;
             Debug.Log("Swap Requested");
             AudioManager.instance.PlaySound(swapSound);
+            m_startCandle.TryGetComponent<CandleSwap>(out CandleSwap candleSwap);
             SwapCandle(m_startCandle, false);
-            SwapCandle(gameObject, true);
-            flameWheelController.playerPointLight = flame.GetComponentInChildren<Light>();
-            cineCam = GameObject.FindFirstObjectByType<CinemachineCamera>();
-            Transform playerTransform = GameObject.FindGameObjectWithTag("CinemachineTarget").transform;
-        
-            if (cineCam != null)
+
+            GameObject targetFlame = candleSwap != null ? candleSwap.flame : flame; 
+            GameObject newFlame = Instantiate(flamePrefab, targetFlame.transform.position, Quaternion.identity);
+            Vector3 targetPosition = flame.transform.position;
+            newFlame.transform.DOMove(targetPosition, 1f).OnComplete(() =>
             {
-                cineCam.Follow = playerTransform;
-                cineCam.LookAt = playerTransform; 
-            }
-            if (spawnPoint != null)
-            {
-                spawnPoint.position = playerTransform.position;
-            }
-            m_isControllingStartCandle = false;
+                SwapCandle(gameObject, true);
+                flameWheelController.playerPointLight = flame.GetComponentInChildren<Light>();
+                cineCam = GameObject.FindFirstObjectByType<CinemachineCamera>();
+                Transform playerTransform = GameObject.FindGameObjectWithTag("CinemachineTarget").transform;
+            
+                if (cineCam != null)
+                {
+                    cineCam.Follow = playerTransform;
+                    cineCam.LookAt = playerTransform; 
+                }
+                if (spawnPoint != null)
+                {
+                    spawnPoint.position = playerTransform.position;
+                }
+                m_isControllingStartCandle = false;
+                Destroy(newFlame);
+            });
         }
 
         if (Input.GetKeyDown(KeyCode.U))

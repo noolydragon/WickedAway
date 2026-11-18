@@ -4,8 +4,9 @@ public class DeathPlane : MonoBehaviour
 {
     [Header("Spawn Settings")]
     public Transform respawnPoint;
-    public Transform playerPoint;
+    private Transform playerPoint;
     public GameObject player;
+
 
     void Start()
     {
@@ -14,14 +15,14 @@ public class DeathPlane : MonoBehaviour
 
     void Update()
     {
-        if (playerPoint.position.y <= -4)
+        if (playerPoint.position.y <= -2f)
         {
             RespawnPlayer(player);
         }
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Respawn"))
         {
             RespawnPlayer(other.gameObject);
         }

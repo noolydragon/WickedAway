@@ -19,6 +19,7 @@ TagManager:
   - White
   - Purple
   - Burnable
+  - Flame
   layers:
   - Default
   - TransparentFX
