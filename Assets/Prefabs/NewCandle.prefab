@@ -33,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.25, z: 21.6967}
-  m_LocalScale: {x: 1, y: 0.26, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1524607226125982387}
@@ -142,8 +142,6 @@ MonoBehaviour:
   JumpTimeout: 0.3
   FallTimeout: 0.15
   Grounded: 1
-  coyoteTime: 0.15
-  jumpBufferTime: 0.15
   GroundedOffset: -0.14
   GroundedRadius: 0.28
   GroundLayers:
@@ -154,6 +152,7 @@ MonoBehaviour:
   BottomClamp: -30
   CameraAngleOverride: 0
   LockCameraPosition: 0
+  dustParticleSystem: {fileID: 0}
 --- !u!114 &7565360607785486362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,8 +208,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CandleSwap
   flame: {fileID: 3477053134512876163}
+  flamePrefab: {fileID: 0}
   cineCam: {fileID: 0}
   m_canSwitch: 0
+  flameWheelController: {fileID: 0}
+  spawnPoint: {fileID: 0}
+  swapSound: {fileID: 0}
 --- !u!1 &7404224465083667131
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,7 +263,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7077294253613448272, guid: cf411c865e8caac4196af7cd95793c41, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.56
+      value: 0.46
       objectReference: {fileID: 0}
     - target: {fileID: 7077294253613448272, guid: cf411c865e8caac4196af7cd95793c41, type: 3}
       propertyPath: m_LocalPosition.z
@@ -328,6 +331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpdateColorTint
   colorTintMaterial: {fileID: -876546973899608171, guid: 132f63219a30db046aa36cb991b77ca9, type: 3}
+  scene: 0
 --- !u!1001 &8684076346365779434
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -350,7 +354,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6e2f22ee1cac9e941b9b3153c9a854d8, type: 3}
       propertyPath: m_LocalScale.y
-      value: 12.5
+      value: 3.7925
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6e2f22ee1cac9e941b9b3153c9a854d8, type: 3}
       propertyPath: m_LocalScale.z
@@ -398,7 +402,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6e2f22ee1cac9e941b9b3153c9a854d8, type: 3}
       propertyPath: m_ConstrainProportionsScale
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
