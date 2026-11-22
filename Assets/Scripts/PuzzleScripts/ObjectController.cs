@@ -5,6 +5,9 @@ public class ObjectController : MonoBehaviour
 {
     [Header("Animator")]
     [SerializeField] private Animator _animator;
+    [Header("Audio Settings")]
+
+    public AudioClip objectSound;
 
     void Start()
     {
@@ -14,5 +17,6 @@ public class ObjectController : MonoBehaviour
     public void AnimateObject()
     {
         _animator.SetTrigger("AnimateObject");
+        AudioManager.instance.PlaySound(objectSound);
     }
 }

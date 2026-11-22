@@ -18,9 +18,12 @@ public class EnemyBehavior : MonoBehaviour
         freezeable = GetComponent<FreezeableObject>();
         rb = GetComponent<Rigidbody>();
 
-        enemyTarget = GameObject.FindGameObjectWithTag("Player").transform;
-
         StartCoroutine(JumpRoutine());
+    }
+
+    void Update()
+    {
+        enemyTarget = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     private IEnumerator JumpRoutine()

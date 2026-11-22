@@ -28,6 +28,10 @@ public class FreezeableObject : MonoBehaviour
 
     void Awake()
     {
+        if(tag == "Frozen")
+        {
+            Freeze();
+        }
         if(!isUnfrozen)
         {
             Freeze();

@@ -18,5 +18,13 @@ public class EntityBehavior : MonoBehaviour
             AudioSource.PlayClipAtPoint(entitySound, transform.position);
             transform.LookAt(entityTarget);
         }
+        if (tag == "Frozen" && other.gameObject.CompareTag("Flame"))
+        {
+            FreezeableObject freezeable = GetComponent<FreezeableObject>();
+            if (freezeable != null)
+            {
+                freezeable.Unfreeze();
+            }
+        }
     }
 }
