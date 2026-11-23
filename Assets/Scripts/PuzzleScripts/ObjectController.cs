@@ -8,6 +8,8 @@ public class ObjectController : MonoBehaviour
     [Header("Audio Settings")]
 
     public AudioClip objectSound;
+    public ParticleSystem objectParticleEffect;
+    private bool allowAnimation = true;
 
     void Start()
     {
@@ -17,6 +19,11 @@ public class ObjectController : MonoBehaviour
     public void AnimateObject()
     {
         _animator.SetTrigger("AnimateObject");
-        AudioManager.instance.PlaySound(objectSound);
+        if (objectParticleEffect != null && allowAnimation)
+        {
+            objectParticleEffect.Play();
+            AudioManager.instance.PlaySound(objectSound);
+        }
+        allowAnimation = false;
     }
 }
